@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chicken Eye</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="brand">
+        <svg class="brand-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="20" height="20" rx="7" fill="currentColor"/>
+          <circle cx="8.5" cy="14.5" r="3" fill="#ffffff"/>
+        </svg>
+        <span class="title">Chicken Eye</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <span class="label">Password toggle</span>
+      <label class="switch">
+        <input type="checkbox" id="toggle-switch" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="footer">
+      <span class="status" id="status-text">Active on password fields</span>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

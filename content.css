@@ -1,0 +1,55 @@
+/* Chicken Eye - Password Toggle Styles */
+/* Minimalist, clean, no borders, no shadows, no gradients */
+
+.chicken-eye-toggle {
+  position: absolute;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  outline: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  cursor: pointer !important;
+  z-index: 2147483640 !important;
+  color: #737373 !important;
+  opacity: 0.65;
+  transition: opacity 0.15s ease, color 0.15s ease;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  pointer-events: auto !important;
+}
+
+.chicken-eye-toggle:hover {
+  opacity: 1 !important;
+  color: #171717 !important;
+}
+
+.chicken-eye-toggle:active {
+  opacity: 0.8 !important;
+}
+
+/* Tabler SVG */
+.chicken-eye-svg {
+  stroke-width: 1.75;
+  stroke: currentColor;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  display: block;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+/* In dark mode environments */
+@media (prefers-color-scheme: dark) {
+  .chicken-eye-toggle {
+    color: #a3a3a3 !important;
+  }
+  .chicken-eye-toggle:hover {
+    color: #f5f5f5 !important;
+  }
+}

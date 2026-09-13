@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chicken Eye Test Suite</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      border: none;
+      outline: none;
+      box-shadow: none;
+    }
+    body {
+      font-family: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #fafafa;
+      color: #18181b;
+      padding: 48px 24px;
+      display: flex;
+      justify-content: center;
+    }
+    .wrapper {
+      max-width: 480px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .header h1 {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+    .header p {
+      font-size: 14px;
+      color: #71717a;
+    }
+    .section {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .section-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: #71717a;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    label {
+      font-size: 13px;
+      color: #52525b;
+    }
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    input[type="password"],
+    input[type="text"] {
+      width: 100%;
+      height: 40px;
+      padding: 0 12px;
+      font-family: inherit;
+      font-size: 14px;
+      color: #18181b;
+      background-color: #f4f4f5;
+      border-radius: 6px;
+    }
+    /* Compact size */
+    input.compact {
+      height: 30px;
+      font-size: 12px;
+      border-radius: 4px;
+    }
+    /* Large size */
+    input.large {
+      height: 52px;
+      font-size: 16px;
+      border-radius: 8px;
+    }
+    .custom-existing-toggle {
+      position: absolute;
+      right: 10px;
+      background: transparent;
+      cursor: pointer;
+      color: #71717a;
+      display: flex;
+      align-items: center;
+    }
+    .btn {
+      height: 38px;
+      padding: 0 16px;
+      border-radius: 6px;
+      background-color: #18181b;
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      align-self: flex-start;
+    }
+    .btn-secondary {
+      background-color: #e4e4e7;
+      color: #18181b;
+    }
+    .actions {
+      display: flex;
+      gap: 8px;
+    }
+  </style>
+  <link rel="stylesheet" href="content.css">
+</head>
+<body>
+  <div class="wrapper">
+    <div class="header">
+      <h1>Chicken Eye Test Suite</h1>
+      <p>Test page for password visibility toggling across multiple sizes</p>
+    </div>
+
+    <!-- Standard and variable size password fields -->
+    <div class="section">
+      <div class="section-title">Variable Size Password Fields</div>
+      
+      <div class="field-group">
+        <label for="pass-compact">Compact Input (30px height, 12px font)</label>
+        <div class="input-wrapper">
+          <input type="password" class="compact" id="pass-compact" placeholder="Compact password" value="Compact123">
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label for="pass-standard">Standard Input (40px height, 14px font)</label>
+        <div class="input-wrapper">
+          <input type="password" id="pass-standard" placeholder="Standard password" value="StandardPass123">
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label for="pass-large">Large Input (52px height, 16px font)</label>
+        <div class="input-wrapper">
+          <input type="password" class="large" id="pass-large" placeholder="Large password" value="LargePass12345">
+        </div>
+      </div>
+    </div>
+
+    <!-- Password field that already has a custom toggle -->
+    <div class="section">
+      <div class="section-title">Field with Existing Website Toggle</div>
+      <div class="field-group">
+        <label for="pass-existing">Existing Toggle (Should not get duplicate)</label>
+        <div class="input-wrapper">
+          <input type="password" id="pass-existing" placeholder="Existing toggle here" value="ExistingEyeSite">
+          <button type="button" class="custom-existing-toggle" aria-label="Show password" title="Toggle password">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"></circle><path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dynamic SPA inputs -->
+    <div class="section">
+      <div class="section-title">Dynamic Inputs (SPA Simulation)</div>
+      <div class="actions">
+        <button type="button" class="btn btn-secondary" id="add-field-btn">Add Dynamic Password Field</button>
+      </div>
+      <div id="dynamic-container" style="display: flex; flex-direction: column; gap: 12px;"></div>
+    </div>
+  </div>
+
+  <script src="content.js"></script>
+  <script>
+    let dynamicCount = 0;
+    document.getElementById('add-field-btn').addEventListener('click', () => {
+      dynamicCount++;
+      const container = document.getElementById('dynamic-container');
+      const div = document.createElement('div');
+      div.className = 'field-group';
+      div.innerHTML = `
+        <label for="dyn-${dynamicCount}">Dynamic Password ${dynamicCount}</label>
+        <div class="input-wrapper">
+          <input type="password" id="dyn-${dynamicCount}" placeholder="Dynamic input ${dynamicCount}" value="DynamicVal${dynamicCount}">
+        </div>
+      `;
+      container.appendChild(div);
+    });
+  </script>
+</body>
+</html>
